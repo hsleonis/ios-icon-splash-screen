@@ -14,6 +14,7 @@ class ImageResizer{
     private $compress;
     private $is_crop_hard;
     private $resize_list;
+    private $image_name;
 
     /**
      * ImageResizer constructor.
@@ -29,8 +30,9 @@ class ImageResizer{
             $this->img_dir      = isset($arr['img_dir'])? $arr['img_dir']: dirname(__FILE__).'/img';
             $this->thumb_dir    = isset($arr['thumb_dir'])? $arr['thumb_dir'].'/': dirname(__FILE__).'/thumb/';
             $this->compress     = isset($arr['compress'])? ($arr['compress']>=0 && $arr['compress']<=1)? $arr['compress']:1:0.8;
-            $this->is_crop_hard = isset($arr['is_crop_hard'])?(bool)$arr['is_crop_hard']:false;
-            $this->resize_list = isset($arr['resize_list'])?(bool)$arr['resize_list']:true;
+            $this->is_crop_hard = isset($arr['is_crop_hard'])?(bool)$arr['is_crop_hard']:true;
+            $this->resize_list = isset($arr['resize_list'])?(bool)$arr['resize_list']:false;
+            $this->image_name = isset($arr['image_name'])?$arr['image_name']:false;
         }
         else return false;
     }
@@ -205,8 +207,12 @@ class ImageResizer{
             imagecopy($tmp_img, $dst_img, 0, 0, $x, $y, $newWidth, $newHeight);
             $dst_img = $tmp_img;
         }
-
-        $new_thumb_loc = $this->thumb_dir . $imageName;
+        
+        if($this->image_name)
+            $new_thumb_loc = $this->thumb_dir . $this->image_name;
+        else    
+            $new_thumb_loc = $this->thumb_dir . $imageName;
+        
         $result = $this->save($dst_img, $new_thumb_loc, $mime);
 
         imagedestroy($dst_img);

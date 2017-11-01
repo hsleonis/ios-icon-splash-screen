@@ -1,4 +1,4 @@
-# iOS app Icon & Launch screen generator
+# iOS App Icon & Launch Screen Generator
 
 Create bulk image thumbnails or scale to eaxct size instantly with PHP and the awesome GD library.
 GD library is builtin with most PHP build. To make sure, use `phpinfo()`.
@@ -103,4 +103,3 @@ Email: hsleonis2@gmail.com
 
 # License
 Copyright (c) 2016 Md. Hasan Shahriar Licensed under the The [MIT License (MIT)](http://opensource.org/licenses/MIT).
-# ios-icon-splash-screen

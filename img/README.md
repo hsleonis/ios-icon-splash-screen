@@ -1,1 +1,0 @@
-Full size image folder
